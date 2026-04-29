@@ -1,0 +1,10 @@
+# Goal: The target coordinates for the robot to reach
+float64 x
+float64 y
+float64 theta
+---
+# Result: Indicates whether the robot successfully reached the target
+bool success
+---
+# Feedback: The remaining distance to the goal during navigation
+float64 distance_remaining

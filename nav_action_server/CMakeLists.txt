@@ -66,4 +66,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# Install the launch directory
+install(DIRECTORY launch/
+  DESTINATION share/${PROJECT_NAME}/launch
+)
 ament_package()

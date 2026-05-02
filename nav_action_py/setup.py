@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'nav_action_py'
@@ -10,16 +12,22 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        
+        # To activate launch file
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
     ],
+    
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='root',
     maintainer_email='eng.h.elnagar@gmail.com',
-    description='TODO: Package description',
+    description='Python Action Server/Client for Navigation',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'server = nav_action_py.server:main',
+            'client = nav_action_py.client:main',
         ],
     },
 )

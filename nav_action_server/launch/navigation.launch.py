@@ -12,6 +12,7 @@ def generate_launch_description():
         namespace='',
         package='rclcpp_components',
         executable='component_container',
+        prefix=['xterm', ' -e'],
         composable_node_descriptions=[
             # 1. Load the Action Server Component
             ComposableNode(

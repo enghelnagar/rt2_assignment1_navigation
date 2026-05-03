@@ -85,17 +85,12 @@ ros2 launch bme_gazebo_sensors spawn_robot_ex.launch.py
 ```
 
 ### 5.3. Executing the C++ Components (Core)
-Open two additional terminals:
-Terminal A (Component Container):
+To launch the entire C++ navigation framework seamlessly, a unified launch file is provided. It automatically initializes the Component Container, loads the Server in the background, and spawns a dedicated `xterm` window for the Client's interactive UI:
+
+Open a new terminal and execute:
 ```bash
 source install/setup.bash
-ros2 run rclcpp_components component_container
-```
-Terminal B (Loading Components):
-```bash
-source install/setup.bash
-ros2 component load /ComponentManager nav_action_server nav_components::NavigationServer
-ros2 component load /ComponentManager nav_action_client nav_components::NavigationClient
+ros2 launch nav_action_server navigation.launch.py
 ```
 
 ### 5.4. Executing the Python Nodes (Bonus)

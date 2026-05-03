@@ -1,21 +1,26 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from nav_action_interfaces.action import Navigate
+
+
+from nav_action_interfaces.action import NavigateRobot 
 import threading
 import sys
 
 class NavigationClient(Node):
     def __init__(self):
         super().__init__('navigation_client_py')
-        self._action_client = ActionClient(self, Navigate, 'navigate_robot')
+        
+    
+        self._action_client = ActionClient(self, NavigateRobot, 'navigate_robot')
         self._goal_handle = None
 
     def send_goal(self, x, y, theta):
         self.get_logger().info('Waiting for action server...')
         self._action_client.wait_for_server()
 
-        goal_msg = Navigate.Goal()
+      
+        goal_msg = NavigateRobot.Goal()
         goal_msg.x = x
         goal_msg.y = y
         goal_msg.theta = theta

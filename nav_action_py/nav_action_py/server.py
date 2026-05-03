@@ -2,7 +2,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer, CancelResponse, GoalResponse
 from rclpy.executors import MultiThreadedExecutor
-from nav_action_interfaces.action import Navigate
+
+from nav_action_interfaces.action import NavigateRobot 
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 import math
@@ -14,7 +15,7 @@ class NavigationServer(Node):
         # Initialize the Action Server
         self._action_server = ActionServer(
             self,
-            Navigate,
+            NavigateRobot, 
             'navigate_robot',
             execute_callback=self.execute_callback,
             goal_callback=self.goal_callback,
@@ -45,8 +46,10 @@ class NavigationServer(Node):
 
     async def execute_callback(self, goal_handle):
         self.get_logger().info('Executing goal...')
-        feedback_msg = Navigate.Feedback()
-        result = Navigate.Result()
+        
+
+        feedback_msg = NavigateRobot.Feedback()
+        result = NavigateRobot.Result()
 
         target_x = goal_handle.request.x
         target_y = goal_handle.request.y
